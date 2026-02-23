@@ -1,0 +1,34 @@
+facebook:
+  label: Facebook
+  permalink: /facebook
+  description: Facebook tag description
+
+hello:
+  label: Hello
+  permalink: /hello
+  description: Hello tag description
+
+docusaurus:
+  label: Docusaurus
+  permalink: /docusaurus
+  description: Docusaurus tag description
+
+hola:
+  label: Hola
+  permalink: /hola
+  description: Hola tag description
+
+cloud:
+  label: Cloud
+  permalink: /cloud
+  description: Articles about cloud computing and infrastructure
+
+cost:
+  label: Cost Optimization
+  permalink: /cost
+  description: Posts about reducing cloud costs and optimization strategies
+
+optimization:
+  label: Optimization
+  permalink: /optimization
+  description: Technical optimization and performance improvements

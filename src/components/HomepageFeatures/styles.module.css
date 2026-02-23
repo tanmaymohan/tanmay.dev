@@ -1,0 +1,36 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  width: 100%;
+  background-color: var(--ifm-background-surface-color);
+}
+
+.iconWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+.featureSvg {
+  height: 120px;
+  width: 120px;
+  transition: transform 0.3s ease;
+}
+
+.featureSvg:hover {
+  transform: scale(1.08);
+}
+
+@media screen and (max-width: 996px) {
+  .features {
+    padding: 2rem 0;
+  }
+
+  .featureSvg {
+    height: 100px;
+    width: 100px;
+  }
+}
