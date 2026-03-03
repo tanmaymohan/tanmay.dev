@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktanmay_blog=globalThis.webpackChunktanmay_blog||[]).push([[472],{5513(t){t.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"My Cost Optimization Journey in Q3 2025-26","permalink":"/blog/cost-optimization-journey","unlisted":false,"date":"2026-01-22T00:00:00.000Z"}]}')}}]);
