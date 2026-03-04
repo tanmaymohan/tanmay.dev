@@ -14,6 +14,7 @@ const styles = {
     width: '100%',
     borderRadius: '8px',
     display: 'block',
+    transition: 'box-shadow 0.15s ease, transform 0.15s ease',
   },
   caption: {
     textAlign: 'center',
@@ -98,6 +99,7 @@ export default function ImageLightbox({images}) {
               src={img.src}
               alt={img.alt}
               style={styles.thumb}
+              className="imageLightboxThumb"
               loading="lazy"
             />
             {img.caption && <p style={styles.caption}>{img.caption}</p>}
