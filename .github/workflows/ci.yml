@@ -1,4 +1,4 @@
-# Build Docusaurus site and deploy to GitHub Pages
+# Build Docusaurus site and deploy to S3 + CloudFront
 name: Build and Deploy
 
 on:
@@ -20,13 +20,31 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install dependencies
+        run: npm ci
 
-      # Deploy to GitHub Pages only on push to master (not on PRs)
-      - name: Deploy to GitHub Pages
+      - name: Build site
+        run: npm run build
+
+      # Deploy only on push to master (not on PRs)
+      - name: Configure AWS credentials
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v4
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync build to S3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          aws s3 sync ./build s3://${{ secrets.S3_BUCKET }} \
+          --delete \
+          --cache-control "public,max-age=300"
+
+      - name: Invalidate CloudFront cache
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
