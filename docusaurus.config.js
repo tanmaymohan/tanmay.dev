@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Tanmay.dev',
   tagline: 'Journey of a cloud physicist',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -98,10 +98,6 @@ const config = {
       },
       navbar: {
         title: 'Tanmay.dev',
-        logo: {
-          alt: 'Logo',
-          src: 'img/author.jpg',
-        },
         items: [
           {
             type: 'docSidebar',
