@@ -3,6 +3,8 @@ sidebar_position: 1
 slug: /running-gpus-in-2026
 ---
 
+import TableWrapper from '@site/src/components/TableWrapper';
+
 # Running GPUs in 2026
 
 A practical guide to running GPU workloads for AI/ML in 2026 across different cloud providers and environments.
@@ -10,6 +12,8 @@ A practical guide to running GPU workloads for AI/ML in 2026 across different cl
 ## Overview
 
 This section covers how to spin up NVIDIA GPU instances and run workloads (training, inference, GPT-OSS, Jupyter, etc.) using various providers and setups:
+
+<TableWrapper>
 
 | Provider | Region focus | GPUs | Best for |
 |----------|--------------|------|----------|
@@ -19,6 +23,8 @@ This section covers how to spin up NVIDIA GPU instances and run workloads (train
 | **[AWS](/docs/running-gpus-in-2026/gpu-workloads-on-aws)** | Global | P5, P4, G6, L4, A100, H100 via EC2 | Enterprise workloads, broad global reach |
 | **[Google Cloud (GCP)](/docs/running-gpus-in-2026/gpu-workloads-on-gcp)** | Global | A100, H100, L4 via Compute Engine | Vertex AI integration, Google ecosystem |
 | **[My Local Machine](/docs/running-gpus-in-2026/gpu-workloads-on-my-local)** | Your hardware | Desktop/workstation GPUs | Development, testing, on-prem workloads |
+
+</TableWrapper>
 
 ## Choose a provider
 

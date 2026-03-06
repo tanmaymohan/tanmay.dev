@@ -3,6 +3,8 @@ sidebar_position: 1
 slug: /running-gpus-in-2026
 ---
 
+import TableWrapper from '@site/src/components/TableWrapper';
+
 # 2026 में GPU चलाना
 
 2026 में AI/ML के लिए विभिन्न क्लाउड प्रोवाइडर्स पर GPU वर्कलोड चलाने की प्रैक्टिकल गाइड।
@@ -10,6 +12,8 @@ slug: /running-gpus-in-2026
 ## अवलोकन
 
 इस सेक्शन में अलग-अलग प्रोवाइडर्स पर NVIDIA GPU इंस्टेंस चलाने और वर्कलोड (ट्रेनिंग, इंफेरेंस, GPT-OSS, Jupyter आदि) चलाने का तरीका बताया गया है:
+
+<TableWrapper>
 
 | प्रोवाइडर | रीजन | GPUs | किसके लिए |
 |-----------|------|------|-----------|
@@ -19,6 +23,8 @@ slug: /running-gpus-in-2026
 | **[AWS](/docs/running-gpus-in-2026/gpu-workloads-on-aws)** | ग्लोबल | T4, L4, A100, H100, H200 आदि | सबसे बड़ा क्लाउड ecosystem, production-scale workloads |
 | **[Google Cloud (GCP)](/docs/running-gpus-in-2026/gpu-workloads-on-gcp)** | ग्लोबल | T4, L4, A100, H100 | Compute Engine + Vertex AI workflow |
 | **[Local Machine](/docs/running-gpus-in-2026/gpu-workloads-on-my-local)** | आपका सिस्टम | आपके हार्डवेयर पर निर्भर | तेज prototyping, cloud cost के बिना परीक्षण |
+
+</TableWrapper>
 
 ## प्रोवाइडर चुनें
 
