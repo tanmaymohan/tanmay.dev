@@ -44,7 +44,7 @@ const CaseStudyList = [
     link: '/blog/scale-to-zero-mlops-on-eks',
     tags: ['MLOps', 'GPU', 'Kubernetes', 'KEDA', 'Karpenter'],
     metric: '$0 idle / 116 GPUs',
-    codeUrl: 'https://github.com/tanmaymohan/gpu-scale-to-zero',
+    // codeUrl: 'https://github.com/tanmaymohan/gpu-scale-to-zero',  // uncomment when repo is public
   },
   {
     title: (
@@ -55,13 +55,13 @@ const CaseStudyList = [
     Icon: IconCaseStudy,
     description: (
       <Translate id="homepage.caseStudies.nvidiaFix.description">
-        Found and fixed a regression in NVIDIA Container Toolkit 1.20.0 breaking GPU detection on EKS Bottlerocket. Filed issue, minimal repro, fix merged in 1.20.1.
+        Found, reproduced & got fixed upstream: regression in NVIDIA Container Toolkit 1.20.0 breaking GPU detection on EKS AL2023 NVIDIA AMI. Filed #2026, NVIDIA merged fix in #2028 (1.20.1).
       </Translate>
     ),
     link: '/blog/nvidia-container-toolkit-regression-fix',
     tags: ['Open Source', 'GPU', 'Kubernetes', 'EKS', 'Debugging'],
     metric: 'Fixed in 1.20.1',
-    codeUrl: 'https://github.com/nvidia/container-toolkit/pull/2851',
+    codeUrl: 'https://github.com/NVIDIA/nvidia-container-toolkit/pull/2028',
   },
   {
     title: (
@@ -78,7 +78,7 @@ const CaseStudyList = [
     link: '/blog/cutting-gpu-cold-starts-on-eks',
     tags: ['GPU', 'Kubernetes', 'EKS', 'Performance', 'Containers'],
     metric: '43s pull (54% faster)',
-    codeUrl: 'https://github.com/tanmaymohan/gpu-cold-start-bench',
+    // codeUrl: 'https://github.com/tanmaymohan/gpu-cold-start-bench',  // uncomment when repo is public
   },
 ];
 

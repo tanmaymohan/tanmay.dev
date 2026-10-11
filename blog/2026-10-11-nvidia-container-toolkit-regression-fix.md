@@ -3,18 +3,18 @@ slug: nvidia-container-toolkit-regression-fix
 title: "Finding a Regression in NVIDIA Container Toolkit 1.20.0"
 authors: [tanmay]
 tags: [gpu, kubernetes, opensource, debugging, aws, eks]
-description: "How I found a regression in NVIDIA Container Toolkit 1.20.0 that broke GPU workloads on EKS: the new CDI hook tried to mkdir under a read-only ConfigMap mount, the device plugin never started, and every GPU node advertised 0 GPUs. Filed upstream, fixed in 1.20.1."
+description: "How I found and reproduced a regression in NVIDIA Container Toolkit 1.20.0 that broke GPU workloads on EKS: the new CDI hook tried to mkdir under a read-only ConfigMap mount, the device plugin never started, and every GPU node advertised 0 GPUs. Filed upstream (NVIDIA/nvidia-container-toolkit#2026), NVIDIA merged the fix in PR #2028, released in v1.20.1."
 keywords: ["NVIDIA Container Toolkit", "GPU regression", "Kubernetes", "EKS", "nvidia.com/gpu", "container runtime", "open source contribution", "Amazon EKS AMI"]
 image: /img/author.jpg
 ---
 
-GPU workloads on our EKS clusters started failing after a routine node group upgrade. The error was cryptic: `nvidia.com/gpu` resource not found on nodes that clearly had GPUs. Every GPU pod stuck in `Pending`. This is the story of finding, reproducing, and fixing a regression in NVIDIA Container Toolkit 1.20.0 that shipped in the EKS GPU AMI v20260818.
+GPU workloads on our EKS clusters started failing after a routine node group upgrade. The error was cryptic: `nvidia.com/gpu` resource not found on nodes that clearly had GPUs. Every GPU pod stuck in `Pending`. This is the story of finding and reproducing a regression in NVIDIA Container Toolkit 1.20.0 that shipped in the EKS NVIDIA AMI v20260818.
 
 {/* truncate */}
 
 ## The Symptom
 
-After Karpenter launched new nodes using the latest EKS GPU AMI (v20260818, which included NVIDIA Container Toolkit 1.20.0), pods requesting `nvidia.com/gpu` stuck in `Pending`:
+After Karpenter launched new nodes using the latest EKS NVIDIA AMI (v20260818, which included NVIDIA Container Toolkit 1.20.0), pods requesting `nvidia.com/gpu` stuck in `Pending`:
 
 ```bash
 $ kubectl describe pod llm-inference-xyz
@@ -42,7 +42,7 @@ createContainer hook #6: exit status 1 ... mkdirat /etc/nvidia/nvidia-applicatio
 
 I stripped it down to the smallest possible test:
 
-1. Launch a `g5.xlarge` (single L4 GPU) with the affected EKS AMI (v20260818)
+1. Launch a `g5.xlarge` (A10G), `g6.xlarge` (L4), or `g6e.xlarge` (L40S) with the affected EKS AMI (v20260818)
 2. Deploy a pod that triggers the CDI hook — even a pod with **no GPU request** but with environment-based injection triggers it
 3. Mount any ConfigMap at `/etc/nvidia` (read-only)
 4. Container creation fails with `EROFS`
@@ -73,29 +73,31 @@ spec:
       name: dummy-config  # any ConfigMap
 ```
 
-## The Fix
+## Reporting & Fix
 
-I filed the issue publicly at **[awslabs/amazon-eks-ami#2790](https://github.com/awslabs/amazon-eks-ami/issues/2790)** with:
+I filed the issue at **[NVIDIA/nvidia-container-toolkit#2026](https://github.com/NVIDIA/nvidia-container-toolkit/issues/2026)** with:
 - Minimal repro steps
 - Exact error from kubelet logs
 - EKS AMI version (v20260818)
 - Root cause analysis (read-only ConfigMap + mkdir in CDI hook)
 
-NVIDIA engineers confirmed the regression within 24 hours. The fix landed in **[PR #2851](https://github.com/nvidia/container-toolkit/pull/2851)** — the hook now ignores read-only filesystem errors when creating the application profiles directory.
+NVIDIA engineers confirmed the regression. The fix landed in **[PR #2028](https://github.com/NVIDIA/nvidia-container-toolkit/pull/2028)** (by @henry118, merged 27 Aug 2026) — the hook now ignores read-only filesystem errors when creating the application profiles directory.
 
 **Released in NVIDIA Container Toolkit 1.20.1.**
+
+I also filed a tracking issue at **[awslabs/amazon-eks-ami#2790](https://github.com/awslabs/amazon-eks-ami/issues/2790)** for the EKS AMI update.
 
 ## EKS Workaround (Until AMI Update)
 
 If you're on EKS and can't wait for the updated AMI, you have two options:
 
-**Option 1: Pin to the previous EKS GPU AMI**
+**Option 1: Pin to the previous EKS NVIDIA AMI**
 ```hcl
 # Terraform - pin to known-good AMI ID
 resource "aws_eks_node_group" "gpu" {
   ami_type = "AL2_x86_64_GPU"  # or BOTTLEROCKET_x86_64_NVIDIA
   # Use the AMI ID from before v20260818, not "latest"
-  # Find it in EC2 > AMIs > Owned by Amazon > amazon-eks-gpu-*
+  # Find it in EC2 > AMIs > Owned by Amazon > amazon-eks-nvidia-*
 }
 ```
 
@@ -124,7 +126,7 @@ spec:
 
 ## What This Taught Me
 
-1. **Pin critical AMIs**. The EKS GPU AMI "latest" moved under us. For GPU workloads, pin the AMI ID in Terraform/Karpenter.
+1. **Pin critical AMIs**. The EKS NVIDIA AMI "latest" moved under us. For GPU workloads, pin the AMI ID in Terraform/Karpenter.
 
 2. **Test GPU registration in CI**. Add a step that launches a test node, installs the device plugin, and asserts `nvidia.com/gpu` > 0.
 
@@ -134,11 +136,12 @@ spec:
 
 ## Links
 
-- **AWS Issue**: [awslabs/amazon-eks-ami#2790](https://github.com/awslabs/amazon-eks-ami/issues/2790)
-- **Fix PR**: [nvidia/container-toolkit#2851](https://github.com/nvidia/container-toolkit/pull/2851)
-- **Release**: [NVIDIA Container Toolkit 1.20.1](https://github.com/nvidia/container-toolkit/releases/tag/v1.20.1)
-- **EKS AMI Reference**: [AWS EKS GPU AMIs](https://github.com/awslabs/amazon-eks-ami)
+- **Primary Issue (my report)**: [NVIDIA/nvidia-container-toolkit#2026](https://github.com/NVIDIA/nvidia-container-toolkit/issues/2026)
+- **Fix PR**: [NVIDIA/nvidia-container-toolkit#2028](https://github.com/NVIDIA/nvidia-container-toolkit/pull/2028) (by @henry118, merged 27 Aug 2026)
+- **Release**: [NVIDIA Container Toolkit 1.20.1](https://github.com/NVIDIA/nvidia-container-toolkit/releases/tag/v1.20.1)
+- **EKS AMI Tracking**: [awslabs/amazon-eks-ami#2790](https://github.com/awslabs/amazon-eks-ami/issues/2790)
+- **EKS AMI Reference**: [AWS EKS NVIDIA AMIs](https://github.com/awslabs/amazon-eks-ami)
 
 ---
 
-*This fix is now deployed across all our GPU node pools. If you run GPU workloads on EKS, upgrade to Toolkit 1.20.1+ or pin to a known-good AMI.*
+*I found, reproduced, and reported this upstream; NVIDIA merged the fix in PR #2028, released in v1.20.1. If you run GPU workloads on EKS, upgrade to Toolkit 1.20.1+ or pin to a known-good AMI.*
