@@ -62,3 +62,18 @@ observability:
   label: Observability
   permalink: /observability
   description: Monitoring, logging, and observability
+
+opensource:
+  label: Open Source
+  permalink: /opensource
+  description: Open source contributions and upstream fixes
+
+debugging:
+  label: Debugging
+  permalink: /debugging
+  description: Root cause analysis and debugging techniques
+
+eks:
+  label: EKS
+  permalink: /eks
+  description: Amazon Elastic Kubernetes Service

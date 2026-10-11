@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Tanmay.dev',
+  title: 'Tanmay Mohan — Senior Platform Engineer, GPU inference on EKS',
   tagline: 'Journey of a cloud physicist',
   favicon: 'img/favicon.svg',
 
@@ -110,9 +110,9 @@ const config = {
     ({
       image: 'img/author.jpg',
       metadata: [
-        {name: 'keywords', content: 'cloud infrastructure, GPU workloads, cost optimization, AI/ML, Tanmay Mohan, cloud physicist, EKS, Kubernetes, AWS, GCP, MLOps, LLMOps'},
+        {name: 'keywords', content: 'Senior Platform Engineer, GPU inference, EKS, Kubernetes, AWS, MLOps, LLMOps, Karpenter, KEDA, cost optimization, cloud infrastructure'},
         {name: 'author', content: 'Tanmay Mohan'},
-        {name: 'description', content: 'Tanmay Mohan — cloud physicist writing about GPU workloads, cloud infrastructure, cost optimization, and AI/ML. Guides for running GPUs on AWS, GCP, Brev, Verda, and E2E Networks.'},
+        {name: 'description', content: 'Tanmay Mohan — Senior Platform Engineer specializing in GPU inference on EKS, Kubernetes, and cloud cost optimization. 116 GPUs at $0 idle, 54% faster cold starts, 71% Langfuse cost reduction.'},
         {property: 'og:site_name', content: 'Tanmay.dev'},
         {property: 'og:type', content: 'website'},
         {property: 'og:locale', content: 'en'},

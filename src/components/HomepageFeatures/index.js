@@ -31,51 +31,54 @@ const IconGpu = ({className}) => (
 const CaseStudyList = [
   {
     title: (
-      <Translate id="homepage.caseStudies.costOptimization.title">
-        $20K/Year Cloud Cost Reduction
+      <Translate id="homepage.caseStudies.scaleToZero.title">
+        Scale-to-Zero GPU at 116 GPUs
       </Translate>
     ),
     Icon: IconCaseStudy,
     description: (
-      <Translate id="homepage.caseStudies.costOptimization.description">
-        8 learnings from production: pod packing, GPU right-sizing, Spot, Savings Plans, RIs, database migration, storage cleanup, service deprecation.
+      <Translate id="homepage.caseStudies.scaleToZero.description">
+        Karpenter + KEDA HTTP add-on + metrics-api across 5 model types (LLM, embedding, OCR, vision, multimodal). $0 idle, 116 GPUs including 55× RTX PRO 6000 Blackwell.
       </Translate>
     ),
-    link: '/blog/cost-optimization-journey',
-    tags: ['FinOps', 'Kubernetes', 'AWS', 'GPU'],
-    metric: '$1,800/mo saved',
+    link: '/blog/scale-to-zero-mlops-on-eks',
+    tags: ['MLOps', 'GPU', 'Kubernetes', 'KEDA', 'Karpenter'],
+    metric: '$0 idle / 116 GPUs',
+    codeUrl: 'https://github.com/tanmaymohan/gpu-scale-to-zero',
   },
   {
     title: (
-      <Translate id="homepage.caseStudies.eksHardening.title">
-        EKS Hardened in 4 Weeks
+      <Translate id="homepage.caseStudies.nvidiaFix.title">
+        NVIDIA Container Toolkit Regression Fix
       </Translate>
     ),
     Icon: IconCaseStudy,
     description: (
-      <Translate id="homepage.caseStudies.eksHardening.description">
-        Bottlerocket nodes, private API, IRSA migration, SonarCloud SAST, Trivy scanning, AWS WAF, branch protection — VAPT-ready.
+      <Translate id="homepage.caseStudies.nvidiaFix.description">
+        Found and fixed a regression in NVIDIA Container Toolkit 1.20.0 breaking GPU detection on EKS Bottlerocket. Filed issue, minimal repro, fix merged in 1.20.1.
       </Translate>
     ),
-    link: '/blog/hardening-eks-stack-6-months',
-    tags: ['Security', 'Kubernetes', 'AWS', 'Compliance'],
-    metric: 'VAPT passed',
+    link: '/blog/nvidia-container-toolkit-regression-fix',
+    tags: ['Open Source', 'GPU', 'Kubernetes', 'EKS', 'Debugging'],
+    metric: 'Fixed in 1.20.1',
+    codeUrl: 'https://github.com/nvidia/container-toolkit/pull/2851',
   },
   {
     title: (
-      <Translate id="homepage.caseStudies.gpuMigration.title">
-        4 GPU Workloads Migrated GCP→AWS
+      <Translate id="homepage.caseStudies.coldStarts.title">
+        Cutting GPU Cold Starts: 54% Faster
       </Translate>
     ),
     Icon: IconCaseStudy,
     description: (
-      <Translate id="homepage.caseStudies.gpuMigration.description">
-        Whisper (Triton + TensorRT-LLM), Triton Inference Server, SD3, vLLM — containerized, Karpenter-managed, internal ALB ingress.
+      <Translate id="homepage.caseStudies.coldStarts.description">
+        Benchmarked NVMe, Bottlerocket, SOCI lazy loading, parallel pulls, FastImagePull, EBS throughput. Best: 43s (54% faster) with AL2023 FastImagePull + 600 MiB/s EBS.
       </Translate>
     ),
-    link: '/blog/migrating-gpu-workloads-across-clouds',
-    tags: ['Migration', 'GPU', 'Kubernetes', 'MLOps'],
-    metric: '4 weeks',
+    link: '/blog/cutting-gpu-cold-starts-on-eks',
+    tags: ['GPU', 'Kubernetes', 'EKS', 'Performance', 'Containers'],
+    metric: '43s pull (54% faster)',
+    codeUrl: 'https://github.com/tanmaymohan/gpu-cold-start-bench',
   },
 ];
 
@@ -110,7 +113,7 @@ const FeatureList = [
   },
 ];
 
-function CaseStudy({Icon, title, description, link, tags, metric}) {
+function CaseStudy({Icon, title, description, link, tags, metric, codeUrl}) {
   return (
     <div className={clsx('col col--4')}>
       <div className={styles.caseStudyCard}>
@@ -126,14 +129,29 @@ function CaseStudy({Icon, title, description, link, tags, metric}) {
             ))}
           </div>
           <div className={styles.metric}>{metric}</div>
-          {link && (
-            <Link
-              className="button button--secondary button--outline"
-              to={link}
-              style={{marginTop: '1rem', display: 'inline-block'}}>
-              <Translate id="homepage.caseStudies.readCaseStudy">Read Case Study →</Translate>
-            </Link>
-          )}
+          <div className={styles.linkRow} style={{display: 'flex', gap: '0.5rem', marginTop: '1rem', flexWrap: 'wrap', justifyContent: 'center'}}>
+            {link && (
+              <Link
+                className="button button--secondary button--outline"
+                to={link}
+                style={{display: 'inline-block'}}>
+                <Translate id="homepage.caseStudies.readCaseStudy">Read Case Study →</Translate>
+              </Link>
+            )}
+            {codeUrl && (
+              <a
+                className="button button--outline button--secondary"
+                href={codeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{display: 'inline-block'}}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{marginRight: '0.4rem', verticalAlign: 'middle'}} aria-hidden="true">
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.305-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                Code
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
