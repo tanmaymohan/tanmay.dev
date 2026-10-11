@@ -24,6 +24,9 @@ const config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
+  // Index pages live at /docs/section/. Without the slash, links like ./compute
+  // resolve to /docs/compute and 404 even though the child page exists.
+  trailingSlash: true,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -31,6 +34,11 @@ const config = {
   projectName: 'tanmay-dev-blog', // Usually your repo name.
 
   onBrokenLinks: 'throw',
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 
   headTags: [
     {
@@ -69,10 +77,16 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: 'All posts',
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
           },
+          // SEO: generate meta tags from frontmatter
+          blogTitle: 'Tanmay.dev Blog',
+          blogDescription: 'Cloud infrastructure, GPU workloads, cost optimization, and AI/ML by Tanmay Mohan (Cloud Physicist). Practical guides for running GPUs on AWS, GCP, Brev, Verda, E2E Networks, and EKS hardening.',
+          postsPerPage: 10,
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -80,6 +94,12 @@ const config = {
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.7,
+          ignorePatterns: ['/tags/**', '/archive/**'],
+          filename: 'sitemap.xml',
         },
       }),
     ],
@@ -90,8 +110,16 @@ const config = {
     ({
       image: 'img/author.jpg',
       metadata: [
-        {name: 'keywords', content: 'cloud infrastructure, GPU workloads, cost optimization, AI/ML, Tanmay Mohan, cloud physicist'},
+        {name: 'keywords', content: 'cloud infrastructure, GPU workloads, cost optimization, AI/ML, Tanmay Mohan, cloud physicist, EKS, Kubernetes, AWS, GCP, MLOps, LLMOps'},
         {name: 'author', content: 'Tanmay Mohan'},
+        {name: 'description', content: 'Tanmay Mohan — cloud physicist writing about GPU workloads, cloud infrastructure, cost optimization, and AI/ML. Guides for running GPUs on AWS, GCP, Brev, Verda, and E2E Networks.'},
+        {property: 'og:site_name', content: 'Tanmay.dev'},
+        {property: 'og:type', content: 'website'},
+        {property: 'og:locale', content: 'en'},
+        {property: 'og:locale:alternate', content: 'hi'},
+        {name: 'twitter:card', content: 'summary_large_image'},
+        {name: 'twitter:site', content: '@tanmaymohan'},
+        {name: 'twitter:creator', content: '@tanmaymohan'},
       ],
       colorMode: {
         respectPrefersColorScheme: true,

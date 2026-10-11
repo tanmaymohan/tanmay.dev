@@ -11,7 +11,7 @@ A practical guide to running GPU workloads for AI/ML in 2026 across different cl
 
 ## Overview
 
-This section covers how to spin up NVIDIA GPU instances and run workloads (training, inference, GPT-OSS, Jupyter, etc.) using various providers and setups:
+This section covers how to spin up NVIDIA GPU instances and run workloads (training, inference, open-source LLMs, Jupyter, etc.) using various providers and setups:
 
 <TableWrapper>
 

@@ -22,7 +22,7 @@ Get started by creating an account at https://myaccount.e2enetworks.com/. You ca
 
 ## Launch a GPU instance
 
-1. Go to AI cloud (TIR) Select the base image (for example, Python 3.10 image).
+1. Go to AI cloud (TIR). Select the base image (for example, Python 3.10 image).
 
 2. Give the instance a name (for example, `example-node`).
 

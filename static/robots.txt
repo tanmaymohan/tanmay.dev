@@ -1,0 +1,14 @@
+# Robots.txt for tanmay.dev
+# Allows all crawlers by default
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://tanmay.dev/sitemap.xml
+
+# Host directive for the canonical domain
+Host: https://tanmay.dev
+
+# Crawl-delay (optional, be respectful)
+# Crawl-delay: 10

@@ -18,6 +18,11 @@
 .env.test.local
 .env.production.local
 
+# Internal drafts / not for publish
+work-log-for-blog.md
+blog/2026-10-04-fourteen-day-metrics-pull.md
+blog/2026-10-05-bill-jump.md
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -1,0 +1,81 @@
+# llms.txt - AI Agent Guide for tanmay.dev
+# This file helps AI agents understand and navigate this site's content
+
+## Site Overview
+- **Site**: https://tanmay.dev
+- **Author**: Tanmay Mohan (Cloud Physicist)
+- **Description**: Personal blog and documentation site covering cloud infrastructure, GPU workloads, cost optimization, Kubernetes/EKS security, and AI/ML infrastructure.
+- **Primary Language**: English (also available in Hindi at /hi/)
+
+## Content Structure
+
+### Blog Posts (/blog/)
+Technical articles and learnings from real-world experience. Key topics:
+- GPU workloads on various cloud providers (AWS, GCP, Brev, Verda, E2E Networks, local)
+- Cloud cost optimization strategies and case studies
+- EKS hardening and security practices
+- MLOps, LLMOps, and inference serving
+- Kubernetes and container orchestration
+- Cloud migrations and infrastructure decisions
+
+### Documentation Guides (/docs/)
+Structured, in-depth guides organized into series:
+
+#### 1. Running GPUs in 2026 (/docs/running-gpus-in-2026/)
+Practical guides for running GPU workloads across providers:
+- Brev by NVIDIA (multi-cloud, Launchables, NIM)
+- Verda (Europe, latest GPUs, spot pricing)
+- E2E Networks (India, H100/H200)
+- AWS (EC2 P5/P4/G6, global)
+- Google Cloud (Compute Engine, Vertex AI)
+- Local machine (desktop/workstation GPUs)
+
+#### 2. Cloud Cost Optimization Playbook (/docs/cost-optimization-playbook/)
+Systematic approach to AWS cost reduction:
+- Compute (right-sizing, spot, Savings Plans, Karpenter)
+- Database (RDS optimization, service migration)
+- Storage (GP2→GP3, S3 Intelligent Tiering, EBS cleanup)
+- Networking (VPC endpoints, NAT Gateway costs)
+- Monitoring (CloudWatch costs, open-source alternatives)
+
+#### 3. EKS Security Hardening (/docs/eks-security-hardening/)
+Layered security approach for EKS clusters:
+- Node Security (Bottlerocket, no SSH, AMI management)
+- Pod Security (IRSA, Pod Identity, secrets management)
+- Network Security (Private API, VPN-only kubectl, WAF)
+- CI/CD Security (SonarCloud, Trivy, branch protection)
+- Cluster Upgrades (version upgrades, addon compatibility)
+
+#### 4. AWS Account & Access Setup (/docs/aws-account-setup/)
+Production-grade AWS account configuration:
+- IAM Identity Center (SSO with Google Workspace)
+- Permission Sets (role-based access design)
+- EKS Requirements (Karpenter, addons, logging)
+- Account Services (VPC, RDS, ElastiCache, S3, CloudFront)
+- Governance (SCPs, CloudTrail, tagging strategy)
+
+## Key Pages
+- **Homepage** (/): Hero with links to Blog and GPU Docs
+- **About** (/about/): Author bio, focus areas, links
+- **Blog Archive** (/blog/archive/): All posts by date
+- **Tags** (/blog/tags/): Filter by topic (GPU, Cost, Kubernetes, AWS, Security, MLOps, etc.)
+
+## For AI Agents
+- All content is in Markdown/MDX format
+- Blog posts have frontmatter: slug, title, authors, tags, date
+- Docs have frontmatter: sidebar_position, slug
+- Code blocks use Prism syntax highlighting
+- Mermaid diagrams are rendered for architecture visuals
+- Tables are wrapped for horizontal scrolling on mobile
+- Images support lightbox zoom
+
+## Accessibility
+- Semantic HTML structure
+- Alt text on images
+- Skip to main content link
+- Color mode respects system preference
+- Responsive design
+
+## License
+Content © Tanmay Mohan. Code available at github.com/tanmaymohan/tanmay-dev-blog
+Built with Docusaurus.

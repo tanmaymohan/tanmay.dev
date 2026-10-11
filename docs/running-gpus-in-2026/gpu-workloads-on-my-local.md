@@ -20,7 +20,7 @@ Running locally is perfect for development, testing, and small-scale inference. 
 
 ## Setup steps
 
-I have a Windows 11 x64 based system, so I am using Ubuntu 24.04 LTS with WSL and Docker Desktop enabled
+I have a Windows 11 x64 based system, so I am using Ubuntu 24.04 LTS with WSL and Docker Desktop enabled.
 
 1. Install or update your NVIDIA driver.
 2. Confirm the GPU is detected:

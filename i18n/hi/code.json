@@ -72,7 +72,7 @@
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
-    "message": "पिछ्ला",
+    "message": "पिछला",
     "description": "The label used to navigate to the previous doc"
   },
   "theme.docs.paginator.next": {
@@ -123,7 +123,7 @@
     "description": "The words used to describe by who the page has been last updated"
   },
   "theme.lastUpdated.lastUpdatedAtBy": {
-    "message": "आखरी अपडेट{atDate}{byUser}",
+    "message": "आख़िरी अपडेट{atDate}{byUser}",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
   "theme.navbar.mobileVersionsDropdown.label": {
@@ -163,7 +163,7 @@
     "description": "The default label used for the Warning admonition (:::warning)"
   },
   "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "बंद करे",
+    "message": "बंद करें",
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
@@ -219,7 +219,7 @@
     "description": "The copy button label on code blocks"
   },
   "theme.CodeBlock.copied": {
-    "message": "कॉपीड",
+    "message": "कॉपी हो गया",
     "description": "The copied button label on code blocks"
   },
   "theme.CodeBlock.copyButtonAriaLabel": {
@@ -326,12 +326,20 @@
     "message": "टैग",
     "description": "The title of the tag list page"
   },
+  "homepage.hero.badge": {
+    "message": "Cloud Physicist",
+    "description": "Homepage hero badge"
+  },
+  "homepage.hero.greeting": {
+    "message": "नमस्ते, मैं तनमय हूँ",
+    "description": "Homepage hero greeting"
+  },
   "homepage.hero.title": {
     "message": "Tanmay.dev",
     "description": "Homepage hero title"
   },
   "homepage.hero.subtitle": {
-    "message": "क्लाउड फिज़िसिस्ट की यात्रा",
+    "message": "मैं cloud infrastructure, GPU workloads, और cost optimization पर लिखता हूँ। इंटरनेट के इस कोने में आपका स्वागत है।",
     "description": "Homepage hero subtitle"
   },
   "homepage.hero.readBlog": {
@@ -342,8 +350,12 @@
     "message": "डॉक्स एक्सप्लोर करें",
     "description": "Homepage hero docs button"
   },
+  "homepage.meta.title": {
+    "message": "Tanmay.dev — Cloud Physicist",
+    "description": "Homepage meta title"
+  },
   "homepage.meta.description": {
-    "message": "क्लाउड फिज़िक्स, इंफ्रास्ट्रक्चर और तकनीक पर ब्लॉग व डॉक्यूमेंटेशन। क्लाउड फिज़िसिस्ट की यात्रा।",
+    "message": "तनमय मोहन — cloud physicist; GPU workloads, cloud infrastructure, cost optimization, और AI/ML पर लेख। AWS, GCP, Brev, Verda, और E2E Networks पर GPU चलाने की guides।",
     "description": "Homepage meta description"
   },
   "homepage.features.cloudInfra.title": {

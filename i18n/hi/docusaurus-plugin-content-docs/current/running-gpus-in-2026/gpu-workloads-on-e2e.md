@@ -21,7 +21,7 @@ E2E Networks, India-focused cloud provider है जहां H100/H200 जै�
 
 ## GPU instance लॉन्च करें
 
-1. Base image चुनें (उदा. Python 3.10 image)।
+1. AI cloud (TIR) खोलें। Base image चुनें (उदा. Python 3.10 image)।
 2. Instance name दें (उदा. `example-node`)।
 3. Workload के हिसाब से GPU type चुनें (उदा. H200)।
 4. Storage, SSH keys और Static IP (जरूरत हो तो) configure करें, फिर instance launch करें।

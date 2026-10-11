@@ -20,6 +20,8 @@ sidebar_label: Local Machine
 
 ## Setup steps
 
+मेरे पास Windows 11 x64 सिस्टम है, इसलिए मैं Ubuntu 24.04 LTS WSL और Docker Desktop के साथ इस्तेमाल करता हूँ।
+
 1. NVIDIA driver install/update करें
 2. GPU detect हो रहा है या नहीं verify करें:
 

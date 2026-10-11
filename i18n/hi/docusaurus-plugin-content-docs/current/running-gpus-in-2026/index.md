@@ -11,7 +11,7 @@ import TableWrapper from '@site/src/components/TableWrapper';
 
 ## अवलोकन
 
-इस सेक्शन में अलग-अलग प्रोवाइडर्स पर NVIDIA GPU इंस्टेंस चलाने और वर्कलोड (ट्रेनिंग, इंफेरेंस, GPT-OSS, Jupyter आदि) चलाने का तरीका बताया गया है:
+इस सेक्शन में अलग-अलग प्रोवाइडर्स पर NVIDIA GPU इंस्टेंस चलाने और वर्कलोड (ट्रेनिंग, इंफेरेंस, open-source LLMs, Jupyter आदि) चलाने का तरीका बताया गया है:
 
 <TableWrapper>
 
