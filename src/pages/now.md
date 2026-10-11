@@ -32,7 +32,7 @@ description: What I'm focused on right now — updated monthly.
 
 ## 🎤 Speaking
 
-- **YouTube**: [GPU Inference at Scale on EKS](https://www.youtube.com/watch?v=CX-tqf_P8qo) — deep dive on Karpenter + KEDA patterns
+- **YouTube**: [GPU Inference at Scale on EKS](https://www.youtube.com/@tanmaymohan) — Karpenter + KEDA deep dive
 
 ## 📫 Open To
 

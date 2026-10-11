@@ -49,7 +49,7 @@ I work at the intersection of **cloud infrastructure**, **GPU workloads**, and *
 
 ## 🎤 Speaking
 
-- **YouTube**: [GPU Inference at Scale on EKS](https://www.youtube.com/watch?v=CX-tqf_P8qo) — Karpenter + KEDA deep dive
+- **YouTube**: [GPU Inference at Scale on EKS](https://www.youtube.com/@tanmaymohan) — Karpenter + KEDA deep dive
 
 ## 📫 Find Me Online
 
